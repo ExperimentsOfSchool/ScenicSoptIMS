@@ -13,5 +13,12 @@ using namespace std;
 //}
 
 void MainView::render() {
-    cout << "Hello World!" << endl;
+    cout << "1. 创建景区景点分布图" << endl;
+    cout << "2. 输出景区景点分布图" << endl;
+    cout << "3. 输出导游线路图" << endl;
+    cout << "4. 输出导游线路图中的回路" << endl;
+    cout << "5. 求两个景点间的最短路径和最短距离" << endl;
+    cout << "6. 输出道路修建规划图" << endl;
+    cout << "7. 停车场车辆进出记录信息" << endl;
+    cout << "0. 退出系统" << endl;
 }
