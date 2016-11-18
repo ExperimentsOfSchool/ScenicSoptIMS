@@ -1,5 +1,5 @@
 //
-// Created by QQ596 on 2016/11/14.
+// Created by Lawrence Lee on 18/11/2016.
 //
 
 #include "ScenicSpot.h"
