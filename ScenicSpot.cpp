@@ -27,10 +27,6 @@ const std::string &ScenicSpot::getSceneName() const {
     return sceneName;
 }
 
-int ScenicSpot::getSceneID() const {
-    return sceneID;
-}
-
 const int *ScenicSpot::getWights() const {
     return weights;
 }
@@ -46,6 +42,11 @@ void ScenicSpot::visit() {
     visited = true;
 }
 
-int ScenicSpot::getWelcomeRate() const {
+const int ScenicSpot::getWelcomeRate() const {
     return welcomeRate;
+}
+
+void ScenicSpot::printSceneInfo() {
+    std::cout << "景点名称：" << sceneName << std::endl;
+    std::cout << "景点欢迎度：" << welcomeRate << std::endl;
 }

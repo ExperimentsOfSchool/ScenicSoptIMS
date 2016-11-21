@@ -30,6 +30,7 @@ int main() {
                 getShortestPath(spotList, spotQty, roadQty);
                 break;
             case 5:
+                findScenicSpot(spotList, spotQty);
                 break;
             case 6:
                 getRankedList(spotList, spotQty);

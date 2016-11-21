@@ -6,6 +6,7 @@
 #define SCENICSPOTIMS_SCENICSPOT_H
 #include <string>
 #include <cstdlib>
+#include <iostream>
 
 class ScenicSpot {
 private:
@@ -22,13 +23,14 @@ public:
 
     const std::string &getSceneName() const;
 
-    int getSceneID() const;
-
     const int *getWights() const;
     const bool isVisited() const;
+    const int getWelcomeRate() const;
+
+    void printSceneInfo();
     void visit();
 
-    int getWelcomeRate() const;
+
 
 };
 

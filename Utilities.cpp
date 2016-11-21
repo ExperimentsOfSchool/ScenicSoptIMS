@@ -166,6 +166,21 @@ void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQ
     std::cout << "最短路径长度：" << dist[indexB] << std::endl;
 }
 
+void findScenicSpot(ScenicSpot * spotList[], const int spotQty) {
+    std::string input;
+    std::cout << "请输入要查找的景点：" << std::endl;
+    std::cin >> input;
+    for(int i = 0; i < spotQty; i++) {
+        if(spotList[i]->getSceneName().find(input, 0) != std::string::npos) {
+            std::cout << "找到景点！" << std::endl;
+            spotList[i]->printSceneInfo();
+            return;
+        }
+    }
+    std::cout << "未找到相关景点信息！" << std::endl;
+
+}
+
 int compare(const void *a, const void *b) {
     int result = ((ScenicSpot*)b)->getWelcomeRate() - ((ScenicSpot*)a)->getWelcomeRate();
     return result;

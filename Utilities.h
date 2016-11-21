@@ -17,5 +17,6 @@ void printTravelRoute(ScenicSpot * spotList[], const int index, const int spotQt
 int generateNearestRoute(ScenicSpot * spotList[], const int spotQty);
 void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQty);
 void getRankedList(ScenicSpot * spotList[], const int spotQty);
+void findScenicSpot(ScenicSpot * spotList[], const int spotQty);
 
 #endif //SCENICSPOTIMS_UTILITIES_H
