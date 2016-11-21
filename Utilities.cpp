@@ -88,6 +88,7 @@ void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQ
     }
     if(indexA == -1 || indexB == -1) {
         std::cout << "找不到景点！" << std::endl;
+        return;
     }
 
     // Initialization
@@ -144,10 +145,23 @@ void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQ
         }
         minDist = 32767;
         minIndex = -1;
-        for(int j = 0; j < spotQty; j++) {
-            std::cout << dist[j] << ", ";
+//        for(int j = 0; j < spotQty; j++) {
+//            std::cout << dist[j] << ", ";
 //            std::cout << path[j] << ", ";
-        }
-        std::cout << std::endl;
+//        }
+//        std::cout << std::endl;
     }
+    std::cout << "最短路径为：" << std::endl;
+    std::cout << spotA << " ";
+    int way[20], j = 0;
+    for(int i = indexB; path[i] != indexA; j++) {
+        way[j] = path[i];
+        i = path[path[i]];
+    }
+    for(int i = j; i >= 0; i--) {
+        std::cout << spotList[way[i]]->getSceneName() << " ";
+    }
+    std::cout << spotB << std::endl;
+    std::cout << "最短路径长度：" << dist[indexB] << std::endl;
+
 }
