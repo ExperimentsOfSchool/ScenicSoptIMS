@@ -95,20 +95,59 @@ void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQ
     int S[20] = {0};
     int dist[20] = {0};
     int path[20] = {0};
+    int minDist = 32767;
+    int minIndex = -1;
     for(int i = 0; i < spotQty; i++) {
         const int * weight = spotList[indexA]->getWights();
         if(i != indexA) {
-            if (weight[i] == 0) dist[i] = 23767;
+            if (weight[i] == 0) dist[i] = 32767;
             else dist[i] = weight[i];
+            S[i] = 0;
+            path[i] = indexA;
         } else {
             dist[i] = 0;
             S[i] = 1;
+            path[i] = i;
         }
-        path[i] = indexA;
+//        std::cout << dist[i] << std::endl;
     }
 
     // Dijkstra
 
-
-
+    for(int i = 0; i < spotQty; i++) {
+        for(int j = 0; j < spotQty; j++) {
+            if(!S[j]) {
+                if(dist[j] < minDist) {
+                    minDist = dist[j];
+                    minIndex = j;
+                }
+            }
+        }
+        for(int j = 0; j < spotQty; j++) {
+            if(!S[j]) {
+                for(int k = 0; k < spotQty; k++) {
+                    if(j == k || S[j]) continue;
+                    if(dist[j] + spotList[j]->getWights()[k] < minDist) {
+                        minDist = dist[j] + spotList[j]->getWights()[k];
+                        minIndex = j;
+                    }
+                }
+            }
+            S[minIndex] = 1;
+        }
+        for(int k = 0; k < spotQty; k++) {
+            if(S[k]) continue;
+            if(dist[k] > dist[minIndex] + spotList[minIndex]->getWights()[k]) {
+                dist[k] = dist[minIndex] + spotList[minIndex]->getWights()[k];
+                path[k] = minIndex;
+            }
+        }
+        minDist = 32767;
+        minIndex = -1;
+        for(int j = 0; j < spotQty; j++) {
+            std::cout << dist[j] << ", ";
+//            std::cout << path[j] << ", ";
+        }
+        std::cout << std::endl;
+    }
 }
