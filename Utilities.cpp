@@ -30,22 +30,22 @@ void setSpotList(ScenicSpot * spotList[], int &spotQty, int &roadQty) {
 
 void printSpotList(ScenicSpot * spotList[], const int spotQty, const int roadQty) {
 
-    std::cout.width(7);
+    std::cout.width(8);
     std::cout << "";
     const int * weights;
     for(int i = 0; i < spotQty; i++) {
         std::cout.setf(std::ios::left);
-        std::cout.width(7);
+        std::cout.width(12);
         std::cout << spotList[i]->getSceneName();
     }
     std::cout << std::endl;
     for(int i = 0; i < spotQty; i++) {
-        std::cout.width(7);
+        std::cout.width(12);
         std::cout << spotList[i]->getSceneName();
         weights = spotList[i] -> getWights();
         for(int j = 0; j < spotQty; j++) {
             std::cout.setf(std::ios::left);
-            std::cout.width(7);
+            std::cout.width(8);
             std::cout << weights[j];
         }
         std::cout << std::endl;
@@ -64,9 +64,51 @@ void printTravelRoute(ScenicSpot * spotList[], const int index, const int spotQt
     const int * weights = spotList[index]->getWights();
     for(int i = index + 1; i < spotQty; i++) {
         if(weights[i]) {
-            std::cout << spotList[index]->getSceneName() << "\t";
+            if(!spotList[index]->isVisited()) {
+                spotList[index]->visit();
+                std::cout << spotList[index]->getSceneName() << "\t";
+            }
             printTravelRoute(spotList, i, spotQty);
         }
     }
-    std::cout << spotList[index]->getSceneName() << "\t";
+    if(!spotList[index]->isVisited()) {
+        std::cout << spotList[index]->getSceneName() << "\t";
+        spotList[index]->visit();
+    }
+}
+
+void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQty) {
+    std::string spotA, spotB;
+    int indexA = -1, indexB = -1;
+    std::cout << "请输入要查询的两个景点的名称" << std::endl;
+    std::cin >> spotA >> spotB;
+    for(int i = 0; i < spotQty; i++) {
+        if(spotList[i]->getSceneName() == spotA) indexA = i;
+        if(spotList[i]->getSceneName() == spotB) indexB = i;
+    }
+    if(indexA == -1 || indexB == -1) {
+        std::cout << "找不到景点！" << std::endl;
+    }
+
+    // Initialization
+
+    int S[20] = {0};
+    int dist[20] = {0};
+    int path[20] = {0};
+    for(int i = 0; i < spotQty; i++) {
+        const int * weight = spotList[indexA]->getWights();
+        if(i != indexA) {
+            if (weight[i] == 0) dist[i] = 23767;
+            else dist[i] = weight[i];
+        } else {
+            dist[i] = 0;
+            S[i] = 1;
+        }
+        path[i] = indexA;
+    }
+
+    // Dijkstra
+
+
+
 }

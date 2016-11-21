@@ -7,10 +7,12 @@
 ScenicSpot::ScenicSpot(std::string spotName, int id) {
     sceneName = spotName;
     sceneID = id;
+    visited = false;
 }
 ScenicSpot::ScenicSpot(const ScenicSpot &other) {
     sceneName = other.sceneName;
     sceneID = other.sceneID;
+    visited = false;
 }
 
 const std::string &ScenicSpot::getSceneName() const {
@@ -27,4 +29,11 @@ const int *ScenicSpot::getWights() const {
 
 void ScenicSpot::setWeight(int index, int weight) {
     weights[index] = weight;
+}
+
+const bool ScenicSpot::isVisited() const {
+    return visited;
+}
+void ScenicSpot::visit() {
+    visited = true;
 }

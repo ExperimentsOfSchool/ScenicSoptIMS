@@ -11,6 +11,7 @@ private:
     std::string sceneName;
     int sceneID;
     int weights[100];
+    bool visited;
 public:
     ScenicSpot(std::string spotName, int id);
     ScenicSpot(const ScenicSpot &other);
@@ -22,6 +23,9 @@ public:
     int getSceneID() const;
 
     const int *getWights() const;
+    const bool isVisited() const;
+    void visit();
+
 };
 
 

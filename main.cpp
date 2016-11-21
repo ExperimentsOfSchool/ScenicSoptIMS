@@ -24,9 +24,10 @@ int main() {
                 break;
             case 3:
                 printTravelRoute(spotList, 0, spotQty);
-            std::cout << std::endl;
+                std::cout << std::endl;
                 break;
             case 4:
+                getShortestPath(spotList, spotQty, roadQty);
                 break;
             case 5:
                 break;
