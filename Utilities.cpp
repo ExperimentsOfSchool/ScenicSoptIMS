@@ -10,9 +10,10 @@ void setSpotList(ScenicSpot * spotList[], int &spotQty, int &roadQty) {
     std::cin >> spotQty >> roadQty;
     std::string spotName;
     std::cout << "请输入景点的名称" << std::endl;
+    srand((unsigned)time(0));
     for(int i = 0; i < spotQty; i++) {
         std::cin >> spotName;
-        spotList[i] = new ScenicSpot(spotName, i);
+        spotList[i] = new ScenicSpot(spotName, i, rand() % 11);
     }
     for(int i = 0; i < roadQty; i++) {
         std::cout << "请输入第 " << i+1 << " 条道路的起点终点和距离" << std::endl;
@@ -158,10 +159,26 @@ void getShortestPath(ScenicSpot * spotList[], const int spotQty, const int roadQ
         way[j] = path[i];
         i = path[path[i]];
     }
-    for(int i = j; i >= 0; i--) {
+    for(int i = j; i >= 0 && j != 0; i--) {
         std::cout << spotList[way[i]]->getSceneName() << " ";
     }
     std::cout << spotB << std::endl;
     std::cout << "最短路径长度：" << dist[indexB] << std::endl;
-
 }
+
+int compare(const void *a, const void *b) {
+    int result = ((ScenicSpot*)b)->getWelcomeRate() - ((ScenicSpot*)a)->getWelcomeRate();
+    return result;
+}
+void getRankedList(ScenicSpot * spotList[], const int spotQty) {
+    // TODO: Generate Ranked List
+    ScenicSpot * (rankedSpotList)[100];
+    for(int i = 0; i < spotQty; i++) {
+        rankedSpotList[i] = new ScenicSpot(spotList[i]);
+    }
+    qsort(rankedSpotList, spotQty, sizeof(rankedSpotList[0]), compare);
+    for(int i = 0; i < spotQty; i++) {
+        std::cout << i + 1 << ". " << rankedSpotList[i]->getSceneName() << std::endl;
+    }
+}
+

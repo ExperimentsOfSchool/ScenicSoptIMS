@@ -4,21 +4,23 @@
 
 #include "ScenicSpot.h"
 
-ScenicSpot::ScenicSpot(std::string spotName, int id) {
+ScenicSpot::ScenicSpot(std::string spotName, int id, int wRate) {
     sceneName = spotName;
     sceneID = id;
     visited = false;
     for(int i = 0; i < 100; i++) {
         weights[i] = 32767;
     }
+    welcomeRate = wRate;
 }
-ScenicSpot::ScenicSpot(const ScenicSpot &other) {
-    sceneName = other.sceneName;
-    sceneID = other.sceneID;
+ScenicSpot::ScenicSpot(const ScenicSpot * other) {
+    sceneName = other->sceneName;
+    sceneID = other->sceneID;
     for(int i = 0; i < 100; i++) {
-        weights[i] = other.weights[i];
+        weights[i] = other->weights[i];
     }
     visited = false;
+    welcomeRate = other->welcomeRate;
 }
 
 const std::string &ScenicSpot::getSceneName() const {
@@ -42,4 +44,8 @@ const bool ScenicSpot::isVisited() const {
 }
 void ScenicSpot::visit() {
     visited = true;
+}
+
+int ScenicSpot::getWelcomeRate() const {
+    return welcomeRate;
 }

@@ -5,6 +5,7 @@
 #ifndef SCENICSPOTIMS_SCENICSPOT_H
 #define SCENICSPOTIMS_SCENICSPOT_H
 #include <string>
+#include <cstdlib>
 
 class ScenicSpot {
 private:
@@ -12,9 +13,10 @@ private:
     int sceneID;
     int weights[100];
     bool visited;
+    int welcomeRate;
 public:
-    ScenicSpot(std::string spotName, int id);
-    ScenicSpot(const ScenicSpot &other);
+    ScenicSpot(std::string spotName, int id, int wRate);
+    ScenicSpot(const ScenicSpot * other);
 
     void setWeight(int index, int weight);
 
@@ -25,6 +27,8 @@ public:
     const int *getWights() const;
     const bool isVisited() const;
     void visit();
+
+    int getWelcomeRate() const;
 
 };
 
