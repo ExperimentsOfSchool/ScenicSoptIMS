@@ -1,0 +1,3 @@
+/Users/Lawrence/Documents/Projects/ClionProjects/ScenicSpotIMS/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Lawrence/Documents/Projects/ClionProjects/ScenicSpotIMS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Lawrence/Documents/Projects/ClionProjects/ScenicSpotIMS/cmake-build-debug/CMakeFiles/ScenicSpotIMS.dir

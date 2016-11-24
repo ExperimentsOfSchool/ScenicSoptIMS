@@ -4,8 +4,9 @@
 
 #include "ScenicSpot.h"
 
-ScenicSpot::ScenicSpot(std::string spotName, int id, int wRate) {
+ScenicSpot::ScenicSpot(std::string spotName, int id, int wRate, std::string spotInfo) {
     sceneName = spotName;
+    sceneInfo = spotInfo;
     sceneID = id;
     visited = false;
     for(int i = 0; i < 100; i++) {
@@ -25,6 +26,10 @@ ScenicSpot::ScenicSpot(const ScenicSpot * other) {
 
 const std::string &ScenicSpot::getSceneName() const {
     return sceneName;
+}
+
+const std::string &ScenicSpot::getSceneInfo() const {
+    return sceneInfo;
 }
 
 const int *ScenicSpot::getWights() const {
@@ -49,4 +54,5 @@ const int ScenicSpot::getWelcomeRate() const {
 void ScenicSpot::printSceneInfo() {
     std::cout << "景点名称：" << sceneName << std::endl;
     std::cout << "景点欢迎度：" << welcomeRate << std::endl;
+    std::cout << "景点简介:" << sceneInfo << std::endl;
 }

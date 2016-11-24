@@ -9,11 +9,13 @@ void setSpotList(ScenicSpot * spotList[], int &spotQty, int &roadQty) {
     std::cout << "请输入景点的个数与道路的个数" << std::endl;
     std::cin >> spotQty >> roadQty;
     std::string spotName;
-    std::cout << "请输入景点的名称" << std::endl;
+    std::string spotInfo;
+    std::cout << "请输入景点的名称和简介" << std::endl;
     srand((unsigned)time(0));
     for(int i = 0; i < spotQty; i++) {
         std::cin >> spotName;
-        spotList[i] = new ScenicSpot(spotName, i, rand() % 11);
+        std::cin >> spotInfo;
+        spotList[i] = new ScenicSpot(spotName, i, rand() % 11, spotInfo);
     }
     for(int i = 0; i < roadQty; i++) {
         std::cout << "请输入第 " << i+1 << " 条道路的起点终点和距离" << std::endl;
@@ -171,7 +173,7 @@ void findScenicSpot(ScenicSpot * spotList[], const int spotQty) {
     std::cout << "请输入要查找的景点：" << std::endl;
     std::cin >> input;
     for(int i = 0; i < spotQty; i++) {
-        if(spotList[i]->getSceneName().find(input, 0) != std::string::npos) {
+        if(spotList[i]->getSceneName().find(input, 0) != std::string::npos || spotList[i]->getSceneInfo().find(input, 0) != std::string::npos) {
             std::cout << "找到景点！" << std::endl;
             spotList[i]->printSceneInfo();
             return;

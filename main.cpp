@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ScenicSpot.h"
 #include "Utilities.h"
+#include "ParkingLot.h"
 
 void renderMenu();
 
@@ -12,6 +13,7 @@ int main() {
     int selection;
     ScenicSpot* (spotList)[100];
     int spotQty, roadQty;
+    ParkingLot parkingLot = ParkingLot("厉害了停车场", 3);
     do {
         renderMenu();
         std::cin >> selection;
@@ -36,8 +38,10 @@ int main() {
                 getRankedList(spotList, spotQty);
                 break;
             case 7:
+                parkingLot.run();
                 break;
-            default:;
+            default:
+                std::cout << "请输入正确的指令！" << std::endl;
         }
     } while(selection != 0);
 }
